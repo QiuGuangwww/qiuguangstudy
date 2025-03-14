@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +25,9 @@
             line-height: 1.6;
         }
 
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             margin: 0;
             font-weight: 600;
         }
@@ -133,7 +136,8 @@
             flex: 1;
         }
 
-        .welcome, .content {
+        .welcome,
+        .content {
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -161,8 +165,10 @@
         }
 
         .welcome-buttons a {
-            background: linear-gradient(135deg, #f0f8ff, #e0ffff); /* 更淡雅的背景色 */
-            color: #005f73; /* 按钮文字颜色调整为深蓝色 */
+            background: linear-gradient(135deg, #f0f8ff, #e0ffff);
+            /* 更淡雅的背景色 */
+            color: #005f73;
+            /* 按钮文字颜色调整为深蓝色 */
             padding: 12px 24px;
             border-radius: 25px;
             font-size: 1rem;
@@ -172,7 +178,8 @@
         }
 
         .welcome-buttons a:hover {
-            background: linear-gradient(135deg, #e0ffff, #f0f8ff); /* 悬停时的颜色变化 */
+            background: linear-gradient(135deg, #e0ffff, #f0f8ff);
+            /* 悬停时的颜色变化 */
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
@@ -183,6 +190,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -212,6 +220,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- 头部导航栏 -->
     <header>
@@ -228,7 +237,8 @@
     <section>
         <!-- 左侧信息栏 -->
         <aside id="sidebar">
-            <img src="https://s21.ax1x.com/2025/03/14/pEaQkqJ.jpg" alt="头像" onerror="this.src='https://via.placeholder.com/150'">
+            <img src="https://s21.ax1x.com/2025/03/14/pEaQkqJ.jpg" alt="头像"
+                onerror="this.src='https://via.placeholder.com/150'">
             <h3>秋光</h3>
             <div class="social-links">
                 <a href="mailto:qiuguang738@gmail.com">
@@ -280,52 +290,53 @@
     <script>
         // 隐藏左侧栏并显示对应内容
         function showContentAndHideSidebar(targetId) {
-            document。getElementById('sidebar')。style。display = 'none'; // 隐藏左侧栏
-            document。getElementById('main-content')。style。width = '100%'; // 全屏显示内容
-            document。getElementById('welcome')。style。display = 'none'; // 隐藏欢迎页面
+            document.getElementById('sidebar').style.display = 'none'; // 隐藏左侧栏
+            document.getElementById('main-content').style.width = '100%'; // 全屏显示内容
+            document.getElementById('welcome').style.display = 'none'; // 隐藏欢迎页面
 
             // 隐藏所有内容块
-            document。querySelectorAll('.content')。forEach(content => {
-                content。style。display = 'none';
+            document.querySelectorAll('.content').forEach(content => {
+                content.style.display = 'none';
             });
 
             // 显示目标内容块
-            const targetContent = document。querySelector(`#${targetId}-content`);
-            targetContent。style。display = 'block';
+            const targetContent = document.querySelector(`#${targetId}-content`);
+            targetContent.style.display = 'block';
 
             // 解析 Markdown 和渲染 LaTeX
-            const markdownDiv = targetContent。querySelector('div');
-            markdownDiv。innerHTML = marked(markdownDiv。innerHTML);
-            MathJax。typesetPromise([markdownDiv]);
+            const markdownDiv = targetContent.querySelector('div');
+            markdownDiv.innerHTML = marked(markdownDiv.innerHTML);
+            MathJax.typesetPromise([markdownDiv]);
         }
 
         // 导航栏链接点击事件
-        document。querySelectorAll('nav a')。forEach(link => {
-            link。addEventListener('click'， function(e) {
-                e。preventDefault();
-                const targetId = this。getAttribute('href')。substring(1);
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
                 showContentAndHideSidebar(targetId);
             });
         });
 
         // 主页按钮点击事件
-        document。querySelectorAll('.welcome-link')。forEach(link => {
-            link。addEventListener('click'， function(e) {
-                e。preventDefault();
-                const targetId = this。getAttribute('href')。substring(1);
+        document.querySelectorAll('.welcome-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
                 showContentAndHideSidebar(targetId);
             });
         });
 
         // 点击 logo 返回主页
-        document。querySelector('.logo')。addEventListener('click'， function() {
-            document。getElementById('sidebar')。style。display = 'block'; // 显示左侧栏
-            document。getElementById('main-content')。style。width = 'auto'; // 恢复默认宽度
-            document。getElementById('welcome')。style。display = 'block'; // 显示欢迎页面
-            document。querySelectorAll('.content')。forEach(content => {
-                content。style。display = 'none'; // 隐藏所有内容块
+        document.querySelector('.logo').addEventListener('click', function () {
+            document.getElementById('sidebar').style.display = 'block'; // 显示左侧栏
+            document.getElementById('main-content').style.width = 'auto'; // 恢复默认宽度
+            document.getElementById('welcome').style.display = 'block'; // 显示欢迎页面
+            document.querySelectorAll('.content').forEach(content => {
+                content.style.display = 'none'; // 隐藏所有内容块
             });
         });
     </script>
 </body>
+
 </html>
