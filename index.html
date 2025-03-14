@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,9 +19,7 @@
             line-height: 1.6;
         }
 
-        h1,
-        h2,
-        h3 {
+        h1, h2, h3 {
             margin: 0;
             font-weight: 600;
         }
@@ -36,8 +33,17 @@
         header {
             background-color: #ffffff;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #007BFF;
+            cursor: pointer;
         }
 
         nav ul {
@@ -45,7 +51,6 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
             gap: 20px;
         }
 
@@ -84,6 +89,7 @@
             height: 150px;
             border-radius: 50%;
             margin-bottom: 20px;
+            object-fit: cover;
         }
 
         aside h3 {
@@ -117,17 +123,12 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
-        .social-links a i {
-            font-size: 1rem;
-        }
-
         /* 右侧主要内容 */
         main {
             flex: 1;
         }
 
-        .welcome,
-        .content {
+        .welcome, .content {
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -146,24 +147,29 @@
             color: #666;
         }
 
-        .content h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+        /* 主页按钮样式 */
+        .welcome-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
         }
 
-        .content p {
+        .welcome-buttons a {
+            background: linear-gradient(135deg, #f0f8ff, #e0ffff); /* 更淡雅的背景色 */
+            color: #005f73; /* 按钮文字颜色调整为深蓝色 */
+            padding: 12px 24px;
+            border-radius: 25px;
             font-size: 1rem;
-            color: #555;
+            font-weight: 500;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* 隐藏所有内容块，默认不显示 */
-        .content {
-            display: none;
-        }
-
-        /* 显示欢迎词的div */
-        .welcome {
-            display: block;
+        .welcome-buttons a:hover {
+            background: linear-gradient(135deg, #e0ffff, #f0f8ff); /* 悬停时的颜色变化 */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
         /* 动画效果 */
@@ -172,7 +178,6 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -202,15 +207,17 @@
         }
     </style>
 </head>
-
 <body>
     <!-- 头部导航栏 -->
     <header>
+        <div class="logo" onclick="location.reload();">秋光の学习笔记</div>
         <nav>
             <ul>
                 <li><a href="#Publications">机器学习</a></li>
                 <li><a href="#Talks">深度学习</a></li>
-                <!-- 其他导航项 -->
+                <!-- 隐藏教学和博客 -->
+                <!-- <li><a href="#Teaching">教学</a></li>
+                <li><a href="#BlogPosts">博客</a></li> -->
             </ul>
         </nav>
     </header>
@@ -218,13 +225,11 @@
     <!-- 主体内容区域 -->
     <section>
         <!-- 左侧信息栏 -->
-        <aside>
-            <div>
-                <img src="https://s21.ax1x.com/2025/03/14/pEaQkqJ.jpg" alt="头像">
-            </div>
+        <aside id="sidebar">
+            <img src="https://s21.ax1x.com/2025/03/14/pEaQkqJ.jpg" alt="头像" onerror="this.src='https://via.placeholder.com/150'">
             <h3>秋光</h3>
             <div class="social-links">
-                <a href="https://qiuguang738@gmail.com">
+                <a href="mailto:qiuguang738@gmail.com">
                     <i class="fas fa-envelope"></i> Email
                 </a>
                 <a href="https://github.com/QiuGuangwww/qiuguangstudy">
@@ -240,56 +245,71 @@
         </aside>
 
         <!-- 右侧主要内容 -->
-        <main>
-            <div class="welcome">
-                <h2>欢迎来到秋光の学习笔记</h2>
-                <p>会不定期更新我的一些学习笔记！</p>
+        <main id="main-content">
+            <div class="welcome" id="welcome">
+                <h2>欢迎来到秋光的学习笔记</h2>
+                <p>这里会不定期更新我的学习笔记，涵盖机器学习、深度学习等领域。</p>
+                <!-- 主页按钮 -->
+                <div class="welcome-buttons">
+                    <a href="#Publications" class="welcome-link">机器学习</a>
+                    <a href="#Talks" class="welcome-link">深度学习</a>
+                </div>
             </div>
-            <div id="Publications-content" class="content">
+            <div id="Publications-content" class="content" style="display: none;">
                 <h2>机器学习内容</h2>
-                <p>这里是机器学习相关的具体内容……</p>
+                <p>这里是机器学习相关的具体内容。例如：线性回归、决策树、支持向量机等。</p>
             </div>
-            <div id="Talks-content" class="content">
+            <div id="Talks-content" class="content" style="display: none;">
                 <h2>深度学习内容</h2>
-                <p>这里是深度学习相关的具体内容……</p>
-            </div>
-            <div id="Teaching-content" class="content">
-                <h2>Teaching内容</h2>
-                <p>这里是Teaching的具体内容……</p>
-            </div>
-            <div id="Portfolio-content" class="content">
-                <h2>Portfolio内容</h2>
-                <p>这里是Portfolio的具体内容……</p>
-            </div>
-            <div id="BlogPosts-content" class="content">
-                <h2>Blog Posts内容</h2>
-                <p>这里是Blog Posts的具体内容……</p>
-            </div>
-            <div id="CV-content" class="content">
-                <h2>CV内容</h2>
-                <p>这里是CV的具体内容……</p>
-            </div>
-            <div id="Guide-content" class="content">
-                <h2>Guide内容</h2>
-                <p>这里是Guide的具体内容……</p>
+                <p>这里是深度学习相关的具体内容。例如：卷积神经网络、循环神经网络、Transformer等。</p>
             </div>
         </main>
     </section>
 
     <!-- JavaScript 实现无刷新内容切换 -->
     <script>
+        // 隐藏左侧栏并显示对应内容
+        function showContentAndHideSidebar(targetId) {
+            document。getElementById('sidebar')。style。display = 'none'; // 隐藏左侧栏
+            document。getElementById('main-content')。style。width = '100%'; // 全屏显示内容
+            document。getElementById('welcome')。style。display = 'none'; // 隐藏欢迎页面
+
+            // 隐藏所有内容块
+            document。querySelectorAll('.content')。forEach(content => {
+                content。style。display = 'none';
+            });
+
+            // 显示目标内容块
+            document。querySelector(`#${targetId}-content`)。style。display = 'block';
+        }
+
+        // 导航栏链接点击事件
         document。querySelectorAll('nav a')。forEach(link => {
-            link。addEventListener('click'， function (e) {
+            link。addEventListener('click'， function(e) {
                 e。preventDefault();
                 const targetId = this。getAttribute('href')。substring(1);
-                document。querySelectorAll('.content')。forEach(content => {
-                    content。style。display = 'none';
-                });
-                document。querySelector(`#${targetId}-content`)。style。display = 'block';
-                document。querySelector('.welcome')。style。display = 'none';
+                showContentAndHideSidebar(targetId);
+            });
+        });
+
+        // 主页按钮点击事件
+        document。querySelectorAll('.welcome-link')。forEach(link => {
+            link。addEventListener('click'， function(e) {
+                e。preventDefault();
+                const targetId = this。getAttribute('href')。substring(1);
+                showContentAndHideSidebar(targetId);
+            });
+        });
+
+        // 点击 logo 返回主页
+        document。querySelector('.logo')。addEventListener('click'， function() {
+            document。getElementById('sidebar')。style。display = 'block'; // 显示左侧栏
+            document。getElementById('main-content')。style。width = 'auto'; // 恢复默认宽度
+            document。getElementById('welcome')。style。display = 'block'; // 显示欢迎页面
+            document。querySelectorAll('.content')。forEach(content => {
+                content。style。display = 'none'; // 隐藏所有内容块
             });
         });
     </script>
 </body>
-
 </html>
