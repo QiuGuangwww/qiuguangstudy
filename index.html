@@ -166,9 +166,7 @@
 
         .welcome-buttons a {
             background: linear-gradient(135deg, #f0f8ff, #e0ffff);
-            /* 更淡雅的背景色 */
             color: #005f73;
-            /* 按钮文字颜色调整为深蓝色 */
             padding: 12px 24px;
             border-radius: 25px;
             font-size: 1rem;
@@ -179,7 +177,6 @@
 
         .welcome-buttons a:hover {
             background: linear-gradient(135deg, #e0ffff, #f0f8ff);
-            /* 悬停时的颜色变化 */
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
@@ -217,6 +214,48 @@
             .social-links {
                 flex-direction: column;
             }
+        }
+
+        /* 目录样式 */
+        .toc {
+            width: 250px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-right: 20px;
+            position: sticky;
+            top: 20px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .toc ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc ul li {
+            margin: 10px 0;
+        }
+
+        .toc ul li a {
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .toc ul li a:hover {
+            color: #007BFF;
+        }
+
+        .content-with-toc {
+            display: flex;
+        }
+
+        .content-main {
+            flex: 1;
         }
     </style>
 </head>
@@ -268,19 +307,36 @@
                 </div>
             </div>
             <div id="Publications-content" class="content" style="display: none;">
-                <h2>机器学习内容</h2>
-                <div id="Publications-markdown">
-                    <p>这里是机器学习相关的具体内容。</p>
-                    <p>例如：线性回归 \( y = \beta_0 + \beta_1 x \)。</p>
-                    <p>决策树、支持向量机等。</p>
+                <div class="content-with-toc">
+                    <div class="toc" id="Publications-toc"></div>
+                    <div class="content-main" id="Publications-main">
+                        <h2>机器学习内容</h2>
+                        <div id="Publications-markdown">
+                            <h3 id="section1">线性回归</h3>
+                            <p>线性回归是一种用于预测连续值的统计方法。公式为 \( y = \beta_0 + \beta_1 x \)。</p>
+                            <h3 id="section2">决策树</h3>
+                            <p>决策树是一种用于分类和回归的树形结构模型。</p>
+                            <h3 id="section3">支持向量机</h3>
+                            <p>支持向量机是一种用于分类和回归的监督学习模型。</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="Talks-content" class="content" style="display: none;">
-                <h2>深度学习内容</h2>
-                <div id="Talks-markdown">
-                    <p>这里是深度学习相关的具体内容。</p>
-                    <p>例如：卷积神经网络 (CNN)、循环神经网络 (RNN)、Transformer。</p>
-                    <p>公式示例：\[ \nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0} \]</p>
+                <div class="content-with-toc">
+                    <div class="toc" id="Talks-toc"></div>
+                    <div class="content-main" id="Talks-main">
+                        <h2>深度学习内容</h2>
+                        <div id="Talks-markdown">
+                            <h3 id="section1">卷积神经网络 (CNN)</h3>
+                            <p>卷积神经网络是一种用于处理图像数据的深度学习模型。</p>
+                            <h3 id="section2">循环神经网络 (RNN)</h3>
+                            <p>循环神经网络是一种用于处理序列数据的深度学习模型。</p>
+                            <h3 id="section3">Transformer</h3>
+                            <p>Transformer 是一种用于自然语言处理的深度学习模型。</p>
+                            <p>公式示例：\[ \nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0} \]</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -288,6 +344,31 @@
 
     <!-- JavaScript 实现无刷新内容切换 -->
     <script>
+        // 生成目录
+        function generateTOC(targetId) {
+            const toc = document.getElementById(`${targetId}-toc`);
+            const mainContent = document.getElementById(`${targetId}-main`);
+            const headings = mainContent.querySelectorAll('h3');
+
+            console.log(`Generating TOC for ${targetId}`); // 调试信息
+            console.log(`Found ${headings.length} headings`); // 调试信息
+
+            if (headings.length > 0) {
+                let tocHTML = '<ul>';
+                headings.forEach(heading => {
+                    const id = heading.getAttribute('id');
+                    const text = heading.textContent;
+                    console.log(`Adding heading: ${text} with id: ${id}`); // 调试信息
+                    tocHTML += `<li><a href="#${id}">${text}</a></li>`;
+                });
+                tocHTML += '</ul>';
+                toc.innerHTML = tocHTML;
+            } else {
+                console.log('No headings found for TOC'); // 调试信息
+                toc.innerHTML = '<p>暂无目录</p>';
+            }
+        }
+
         // 隐藏左侧栏并显示对应内容
         function showContentAndHideSidebar(targetId) {
             document.getElementById('sidebar').style.display = 'none'; // 隐藏左侧栏
@@ -302,6 +383,9 @@
             // 显示目标内容块
             const targetContent = document.querySelector(`#${targetId}-content`);
             targetContent.style.display = 'block';
+
+            // 生成目录
+            generateTOC(targetId);
 
             // 解析 Markdown 和渲染 LaTeX
             const markdownDiv = targetContent.querySelector('div');
