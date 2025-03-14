@@ -4,15 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="秋光的学习笔记网站，分享机器学习、深度学习等知识内容。">
+    <meta name="keywords" content="机器学习, 深度学习, 学习笔记, 秋光">
     <title>秋光の学习笔记</title>
+    <!-- 引入 Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* 基础样式 */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
         }
 
+        h1, h2, h3 {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 头部导航栏 */
         header {
-            border-bottom: 1px solid #ccc;
-            padding: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
         }
 
         nav ul {
@@ -20,49 +43,159 @@
             margin: 0;
             padding: 0;
             display: flex;
+            justify-content: center;
+            gap: 20px;
         }
 
-        nav ul li {
-            margin-right: 20px;
+        nav ul li a {
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
+        nav ul li a:hover {
+            color: #007BFF;
+        }
+
+        /* 主体内容区域 */
         section {
-            margin: 20px;
+            display: flex;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            gap: 40px;
         }
 
+        /* 左侧信息栏 */
         aside {
-            width: 200px;
+            width: 250px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        aside img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        aside h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        。social-links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        。social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #6e8efb, #4a6cf7);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: background 0.3s ease， transform 0.3s ease， box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0， 0， 0， 0.1);
+        }
+
+        。social-links a:hover {
+            background: linear-gradient(135deg, #4a6cf7, #6e8efb);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0， 0， 0， 0.15);
+        }
+
+        。social-links a i {
+            font-size: 1rem;
+        }
+
+        /* 右侧主要内容 */
+        main {
+            flex: 1;
+        }
+
+        。welcome, .content {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0， 0， 0， 0.1);
+            padding: 30px;
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        。welcome h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        。welcome p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        。content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        。content p {
+            font-size: 1rem;
+            color: #555;
         }
 
         /* 隐藏所有内容块，默认不显示 */
-        .content {
+        。content {
             display: none;
         }
 
         /* 显示欢迎词的div */
-        .welcome {
+        。welcome {
             display: block;
         }
 
-        /* 当对应的锚点被激活时，显示内容块，隐藏欢迎词 */
-        #Publications:target~main.welcome,
-        #Talks:target~main.welcome,
-        #Teaching:target~main.welcome,
-        #Portfolio:target~main.welcome,
-        #BlogPosts:target~main.welcome,
-        #CV:target~main.welcome,
-        #Guide:target~main.welcome {
-            display: none;
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            到 {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        #Publications:target~.content#Publications-content,
-        #Talks:target~.content#Talks-content,
-        #Teaching:target~.content#Teaching-content,
-        #Portfolio:target~.content#Portfolio-content,
-        #BlogPosts:target~.content#BlogPosts-content,
-        #CV:target~.content#CV-content,
-        #Guide:target~.content#Guide-content {
-            display: block;
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            aside {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            。social-links {
+                flex-direction: row;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -74,11 +207,7 @@
             <ul>
                 <li><a href="#Publications">机器学习</a></li>
                 <li><a href="#Talks">深度学习</a></li>
-                <!--<li><a href="#Teaching">Teaching</a></li>-->
-                <!--<li><a href="#Portfolio">Portfolio</a></li>-->
-                <!--<li><a href="#BlogPosts">Blog Posts</a></li>-->
-                <!--<li><a href="#CV">CV</a></li>-->
-                <!--<li><a href="#Guide">Guide</a></li>-->
+                <!-- 其他导航项 -->
             </ul>
         </nav>
     </header>
@@ -87,22 +216,31 @@
     <section>
         <!-- 左侧信息栏 -->
         <aside>
-            <div style="text-align: center;">
-                <img src="https://s21.ax1x.com/2025/03/14/pEaQkqJ.jpg" alt="头像"
-                    style="width: 150px; height: 150px; border-radius: 50%;">
+            <div>
+                <img src="https://s21.ax1x.com/2025/03/14/pEaQkqJ.jpg" alt="头像">
             </div>
             <h3>秋光</h3>
-            <p><a href="https://qiuguang738@gmail.com">Email</a></p>
-            <p><a href="https://github.com/QiuGuangwww/qiuguangstudy">GitHub</a></p>
-            <p><a href="https://space.bilibili.com/433800846">Bilibili</a></p>
-            <p><a href="https://www.zhihu.com/people/qiu-guang-de-zhu-fu">知乎 Zhihu</a></p>
+            <div class="social-links">
+                <a href="https://qiuguang738@gmail.com">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+                <a href="https://github.com/QiuGuangwww/qiuguangstudy">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://space.bilibili.com/433800846">
+                    <i class="fab fa-bilibili"></i> Bilibili
+                </a>
+                <a href="https://www.zhihu.com/people/qiu-guang-de-zhu-fu">
+                    <i class="fab fa-zhihu"></i> 知乎
+                </a>
+            </div>
         </aside>
 
         <!-- 右侧主要内容 -->
         <main>
             <div class="welcome">
                 <h2>欢迎来到秋光の学习笔记</h2>
-                <p>会不定期将学习笔记上传至此</p>
+                <p>会不定期上传一些最近学过的内容！</p>
             </div>
             <div id="Publications-content" class="content">
                 <h2>机器学习内容</h2>
@@ -134,6 +272,21 @@
             </div>
         </main>
     </section>
+
+    <!-- JavaScript 实现无刷新内容切换 -->
+    <script>
+        document。querySelectorAll('nav a')。forEach(link => {
+            link。addEventListener('click'， function (e) {
+                e。preventDefault();
+                const targetId = this。getAttribute('href')。substring(1);
+                document。querySelectorAll('.content')。forEach(content => {
+                    content。style。display = 'none';
+                });
+                document。querySelector(`#${targetId}-content`)。style。display = 'block';
+                document。querySelector('.welcome')。style。display = 'none';
+            });
+        });
+    </script>
 </body>
 
 </html>
