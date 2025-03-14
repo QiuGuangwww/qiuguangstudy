@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>秋光の学习笔记</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        section {
+            margin: 20px;
+        }
+
+        aside {
+            width: 200px;
+        }
+
+        /* 隐藏所有内容块，默认不显示 */
+        .content {
+            display: none;
+        }
+
+        /* 显示欢迎词的div */
+        .welcome {
+            display: block;
+        }
+
+        /* 当对应的锚点被激活时，显示内容块，隐藏欢迎词 */
+        #Publications:target~main.welcome,
+        #Talks:target~main.welcome,
+        #Teaching:target~main.welcome,
+        #Portfolio:target~main.welcome,
+        #BlogPosts:target~main.welcome,
+        #CV:target~main.welcome,
+        #Guide:target~main.welcome {
+            display: none;
+        }
+
+        #Publications:target~.content#Publications-content,
+        #Talks:target~.content#Talks-content,
+        #Teaching:target~.content#Teaching-content,
+        #Portfolio:target~.content#Portfolio-content,
+        #BlogPosts:target~.content#BlogPosts-content,
+        #CV:target~.content#CV-content,
+        #Guide:target~.content#Guide-content {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 头部导航栏 -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#Publications">机器学习</a></li>
+                <li><a href="#Talks">深度学习</a></li>
+                <!--<li><a href="#Teaching">Teaching</a></li>-->
+                <!--<li><a href="#Portfolio">Portfolio</a></li>-->
+                <!--<li><a href="#BlogPosts">Blog Posts</a></li>-->
+                <!--<li><a href="#CV">CV</a></li>-->
+                <!--<li><a href="#Guide">Guide</a></li>-->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 主体内容区域 -->
+    <section>
+        <!-- 左侧信息栏 -->
+        <aside>
+            <div style="text-align: center;">
+                <img src="https://s21.ax1x.com/2025/03/14/pEaQkqJ.jpg" alt="头像"
+                    style="width: 150px; height: 150px; border-radius: 50%;">
+            </div>
+            <h3>秋光</h3>
+            <p><a href="https://qiuguang738@gmail.com">Email</a></p>
+            <p><a href="https://github.com/QiuGuangwww/qiuguangstudy">GitHub</a></p>
+            <p><a href="https://space.bilibili.com/433800846">Bilibili</a></p>
+            <p><a href="https://www.zhihu.com/people/qiu-guang-de-zhu-fu">知乎 Zhihu</a></p>
+        </aside>
+
+        <!-- 右侧主要内容 -->
+        <main>
+            <div class="welcome">
+                <h2>欢迎来到秋光の学习笔记</h2>
+                <p>会不定期将学习笔记上传至此</p>
+            </div>
+            <div id="Publications-content" class="content">
+                <h2>机器学习内容</h2>
+                <p>这里是机器学习相关的具体内容……</p>
+            </div>
+            <div id="Talks-content" class="content">
+                <h2>深度学习内容</h2>
+                <p>这里是深度学习相关的具体内容……</p>
+            </div>
+            <div id="Teaching-content" class="content">
+                <h2>Teaching内容</h2>
+                <p>这里是Teaching的具体内容……</p>
+            </div>
+            <div id="Portfolio-content" class="content">
+                <h2>Portfolio内容</h2>
+                <p>这里是Portfolio的具体内容……</p>
+            </div>
+            <div id="BlogPosts-content" class="content">
+                <h2>Blog Posts内容</h2>
+                <p>这里是Blog Posts的具体内容……</p>
+            </div>
+            <div id="CV-content" class="content">
+                <h2>CV内容</h2>
+                <p>这里是CV的具体内容……</p>
+            </div>
+            <div id="Guide-content" class="content">
+                <h2>Guide内容</h2>
+                <p>这里是Guide的具体内容……</p>
+            </div>
+        </main>
+    </section>
+</body>
+
+</html>
