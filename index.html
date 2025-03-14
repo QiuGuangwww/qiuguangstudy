@@ -12,7 +12,7 @@
     <style>
         /* 基础样式 */
         body {
-            font-family: 'Segoe UI'， Tahoma， Geneva， Verdana， sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
@@ -20,7 +20,9 @@
             line-height: 1.6;
         }
 
-        h1， h2， h3 {
+        h1,
+        h2,
+        h3 {
             margin: 0;
             font-weight: 600;
         }
@@ -33,7 +35,7 @@
         /* 头部导航栏 */
         header {
             background-color: #ffffff;
-            box-shadow: 0 2px 4px rgba(0， 0， 0， 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 20px;
             text-align: center;
         }
@@ -50,7 +52,7 @@
         nav ul li a {
             color: #555;
             font-weight: 500;
-            transition: color 0.3s ease， border-bottom 0.3s ease;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
         }
 
         nav ul li a:hover {
@@ -72,7 +74,7 @@
             width: 250px;
             background-color: #ffffff;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0， 0， 0， 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
             text-align: center;
         }
@@ -89,13 +91,13 @@
             margin-bottom: 20px;
         }
 
-        。social-links {
+        .social-links {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
 
-        。social-links a {
+        .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -105,17 +107,17 @@
             padding: 10px 16px;
             border-radius: 25px;
             font-size: 0.9rem;
-            transition: background 0.3s ease， transform 0.3s ease， box-shadow 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0， 0， 0， 0.1);
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        。social-links a:hover {
+        .social-links a:hover {
             background: linear-gradient(135deg, #3f2b96, #a8c0ff);
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0， 0， 0， 0.15);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
-        。social-links a i {
+        .social-links a i {
             font-size: 1rem;
         }
 
@@ -124,42 +126,43 @@
             flex: 1;
         }
 
-        。welcome, .content {
+        .welcome,
+        .content {
             background-color: #ffffff;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0， 0， 0， 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 30px;
             margin-bottom: 20px;
             animation: fadeIn 0.5s ease;
         }
 
-        。welcome h2 {
+        .welcome h2 {
             font-size: 2rem;
             margin-bottom: 10px;
         }
 
-        。welcome p {
+        .welcome p {
             font-size: 1.1rem;
             color: #666;
         }
 
-        。content h2 {
+        .content h2 {
             font-size: 1.8rem;
             margin-bottom: 20px;
         }
 
-        。content p {
+        .content p {
             font-size: 1rem;
             color: #555;
         }
 
         /* 隐藏所有内容块，默认不显示 */
-        。content {
+        .content {
             display: none;
         }
 
         /* 显示欢迎词的div */
-        。welcome {
+        .welcome {
             display: block;
         }
 
@@ -169,7 +172,8 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
-            到 {
+
+            to {
                 opacity: 1;
                 transform: translateY(0);
             }
@@ -192,7 +196,7 @@
                 gap: 10px;
             }
 
-            。social-links {
+            .social-links {
                 flex-direction: column;
             }
         }
@@ -239,7 +243,7 @@
         <main>
             <div class="welcome">
                 <h2>欢迎来到秋光の学习笔记</h2>
-                <p>会不定期上传一些我学的相关方面的笔记。</p>
+                <p>会不定期更新我的一些学习笔记！</p>
             </div>
             <div id="Publications-content" class="content">
                 <h2>机器学习内容</h2>
