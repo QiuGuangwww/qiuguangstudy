@@ -79,7 +79,8 @@
             max-width: 1200px;
             margin: 40px auto;
             padding: 0 20px;
-            gap: 40px;
+            gap: 20px;
+            /* 调整目录和主内容的间距 */
         }
 
         /* 左侧信息栏 */
@@ -218,7 +219,8 @@
 
         /* 目录样式 */
         .toc {
-            width: 250px;
+            width: 200px;
+            /* 目录宽度 */
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -228,6 +230,13 @@
             top: 20px;
             max-height: 80vh;
             overflow-y: auto;
+        }
+
+        .toc h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #007BFF;
         }
 
         .toc ul {
@@ -308,7 +317,9 @@
             </div>
             <div id="Publications-content" class="content" style="display: none;">
                 <div class="content-with-toc">
-                    <div class="toc" id="Publications-toc"></div>
+                    <div class="toc" id="Publications-toc">
+                        <h4>目录</h4> <!-- 添加“目录”字样 -->
+                    </div>
                     <div class="content-main" id="Publications-main">
                         <h2>机器学习内容</h2>
                         <div id="Publications-markdown">
@@ -324,15 +335,17 @@
             </div>
             <div id="Talks-content" class="content" style="display: none;">
                 <div class="content-with-toc">
-                    <div class="toc" id="Talks-toc"></div>
+                    <div class="toc" id="Talks-toc">
+                        <h4>目录</h4> <!-- 添加“目录”字样 -->
+                    </div>
                     <div class="content-main" id="Talks-main">
                         <h2>深度学习内容</h2>
                         <div id="Talks-markdown">
-                            <h3 id="section1">卷积神经网络 (CNN)</h3>
+                            <h3 id="dl-section1">卷积神经网络 (CNN)</h3>
                             <p>卷积神经网络是一种用于处理图像数据的深度学习模型。</p>
-                            <h3 id="section2">循环神经网络 (RNN)</h3>
+                            <h3 id="dl-section2">循环神经网络 (RNN)</h3>
                             <p>循环神经网络是一种用于处理序列数据的深度学习模型。</p>
-                            <h3 id="section3">Transformer</h3>
+                            <h3 id="dl-section3">Transformer</h3>
                             <p>Transformer 是一种用于自然语言处理的深度学习模型。</p>
                             <p>公式示例：\[ \nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0} \]</p>
                         </div>
@@ -350,22 +363,17 @@
             const mainContent = document.getElementById(`${targetId}-main`);
             const headings = mainContent.querySelectorAll('h3');
 
-            console.log(`Generating TOC for ${targetId}`); // 调试信息
-            console.log(`Found ${headings.length} headings`); // 调试信息
-
             if (headings.length > 0) {
                 let tocHTML = '<ul>';
                 headings.forEach(heading => {
                     const id = heading.getAttribute('id');
                     const text = heading.textContent;
-                    console.log(`Adding heading: ${text} with id: ${id}`); // 调试信息
                     tocHTML += `<li><a href="#${id}">${text}</a></li>`;
                 });
                 tocHTML += '</ul>';
-                toc.innerHTML = tocHTML;
+                toc.innerHTML += tocHTML; // 保留“目录”字样
             } else {
-                console.log('No headings found for TOC'); // 调试信息
-                toc.innerHTML = '<p>暂无目录</p>';
+                toc.innerHTML += '<p>暂无目录</p>';
             }
         }
 
