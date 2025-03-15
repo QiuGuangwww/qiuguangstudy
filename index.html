@@ -20,6 +20,8 @@
     <!-- 引入 Prism.js 的 JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 
     <style>
         /* 基础样式 */
@@ -279,6 +281,31 @@
         .content-main {
             flex: 1;
         }
+
+        /* 多级目录样式 */
+        .toc ul ul {
+            margin-left: 20px;
+            /* 缩进子目录 */
+            display: none;
+            /* 默认隐藏子目录 */
+        }
+
+        .toc ul li.active>ul {
+            display: block;
+            /* 显示子目录 */
+        }
+
+        /* 箭头按钮样式 */
+        .toc ul li .arrow {
+            cursor: pointer;
+            margin-right: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .toc ul li.active .arrow {
+            transform: rotate(90deg);
+            /* 展开时旋转箭头 */
+        }
     </style>
 </head>
 
@@ -426,8 +453,7 @@
     <section>
         <!-- 左侧信息栏 -->
         <aside id="sidebar">
-            <img src="https://s21.ax1x.com/2025/03/14/pEaQkqJ.jpg" alt="头像"
-                onerror="this.src='https://via.placeholder.com/150'">
+            <img src="https://s21.ax1x.com/2025/03/14/pEaQkqJ.jpg" alt="头像">
             <h3>秋光</h3>
             <div class="social-links">
                 <a href="mailto:qiuguang738@gmail.com">
@@ -786,13 +812,45 @@ def cost_sensitive_error(y_true, y_pred, cost_matrix):
 
             if (headings.length > 0) {
                 let tocHTML = '<ul>';
+                let stack = []; // 用于跟踪目录层级
+
                 headings.forEach(heading => {
                     const id = heading.getAttribute('id');
                     const text = heading.textContent;
-                    tocHTML += `<li><a href="#${id}">${text}</a></li>`;
+                    const levels = id.split('-'); // 获取层级信息
+                    const level = levels.length; // 当前层级
+
+                    // 关闭多余的层级
+                    while (stack.length >= level) {
+                        tocHTML += '</ul></li>';
+                        stack.pop();
+                    }
+
+                    // 添加当前层级
+                    tocHTML += `<li>
+                <span class="arrow">▶</span>
+                <a href="#${id}">${text}</a>
+                <ul>`;
+                    stack.push(level); // 记录当前层级
                 });
+
+                // 关闭所有未闭合的层级
+                while (stack.length > 0) {
+                    tocHTML += '</ul></li>';
+                    stack.pop();
+                }
+
                 tocHTML += '</ul>';
                 toc.innerHTML += tocHTML; // 保留“目录”字样
+
+                // 添加折叠/展开功能
+                const arrows = toc.querySelectorAll('.arrow');
+                arrows.forEach(arrow => {
+                    arrow.addEventListener('click', function () {
+                        const parentLi = this.parentElement; // 获取当前箭头所在的 <li> 元素
+                        parentLi.classList.toggle('active'); // 切换 'active' 类
+                    });
+                });
             } else {
                 toc.innerHTML += '<p>暂无目录</p>';
             }
